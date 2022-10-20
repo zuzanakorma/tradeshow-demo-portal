@@ -1,78 +1,51 @@
+<div class="col-lg-3 col-md-6">
+  <div class="card mb-3 mh-100">
+    <div class="card-body">
+      <img src="{{ card.image.url }}" alt="{{ card.title }}" width="90" height="90">
+    </div>
 
-        <div class="col-lg-3 col-md-6">
-            <div class="card mb-3 mh-100" >
-              <div class="card-body">
-                <img src="{{ card.image.url }}"  alt="{{ card.title }}"
-                  class="rounded-circle " width="90" height="90">
-              </div>
-
-              <div class="card-body py-0 ">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item" style="height: 90px"><h3>{{ card.title }}</h3></li>
-                    <li class="list-group-item" style="height: 64px">{{ card.description }}</li>
-                  </ul>
-              </div>
+    <div class="card-body py-0 ">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" style="height: 90px">
+          <h3>{{ card.title }}</h3>
+        </li>
+        <li class="list-group-item" style="height: 64px">{{ card.description }}</li>
+      </ul>
+    </div>
 
 
-              <div class="card-body main-buttons">
+    <div class="card-body main-buttons">
 
-                      <button class="btn btn-primary collapsed"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapse{{card.id}}"
-                      aria-expanded="true"
-                      aria-controls="collapse{{card.id}}">
-                        Credentials
-                      </button>
-                        <button class="btn btn-primary"
-                          type="button">
-                        <a href="{{ card.url }}"
-                        target=”_blank”
-                        class="text-white"
-                        >Open</a></button>
+      <button class="btn btn-primary collapsed" type="button" data-bs-toggle="collapse"
+        data-bs-target="#collapse{{card.id}}" aria-expanded="true" aria-controls="collapse{{card.id}}">
+        Credentials
+      </button>
+      <button class="btn btn-primary" type="button">
+        <a href="{{ card.url }}" target=”_blank” class="text-white">Open</a></button>
 
-                    <div class="collapse" id="collapse{{card.id}}">
-                      <div class="card card-body my-2">
-                        <p class="text-muted">Username: <strong>{{ card.username}}</strong></p>
+      <div class="collapse" id="collapse{{card.id}}">
+        <div class="card card-body my-2">
+          <p class="text-muted">Username: <strong>{{ card.username}}</strong></p>
 
-                        <button class="btn btn-primary"
-                        type="button" id="{{card.id}}" value="{{ card.password}}" onclick="copyPassword(buttonId='{{card.id}}')">Copy Password</button>
+          <button class="btn btn-primary" type="button" id="{{card.id}}" value="{{ card.password}}"
+            onclick="copyPassword(buttonId='{{card.id}}')">Copy Password</button>
 
-                      </div>
-
-                    </div>
-              </div>
-            </div>
         </div>
 
-
-  <script>
-
-    function copyPassword(buttonId) {
-        // Get the text field
-        var copyText = document.getElementById(buttonId);
-
-        // Copy the text inside the text field
-        navigator.clipboard.writeText(copyText.value);
-      }
-
-  </script>
+      </div>
+    </div>
+  </div>
+</div>
 
 
+<script>
 
+  function copyPassword(buttonId) {
+    // Get the text field
+    var copyText = document.getElementById(buttonId);
 
+    // Copy the text inside the text field
+    navigator.clipboard.writeText(copyText.value);
+  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</script>
