@@ -81,10 +81,16 @@ WSGI_APPLICATION = "base.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+if env.str("DATABASE_DIR", default=""):
+    DATABASE_DIR = BASE_DIR / env.str("DATABASE_DIR")
+else:
+    DATABASE_DIR = BASE_DIR
+
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "NAME": DATABASE_DIR / "db.sqlite3",
     }
 }
 
