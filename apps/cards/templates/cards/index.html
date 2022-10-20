@@ -1,0 +1,48 @@
+{% extends 'cards/base.html' %}
+{% load static %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block css_file%}
+
+<link rel="stylesheet" href="{% static 'cards/details.css' %}">
+<link rel="stylesheet" href="{% static 'cards/index.css' %}">
+{% endblock %}
+
+
+
+{% block content %}
+    <nav class="nav navbar navbar-expand-sm navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="{{ logo }}" alt="" width="150">
+        </a>
+
+
+        <div class="d-flex justify-content-center">
+          <div class="px-3">
+            <a href="/admin" class="px-3 text-white">Admin</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section id="team" class="my-5 text-center">
+        <div class="container">
+          <div class="row">
+
+
+                {% for card in cards %}
+                   {% include "cards/includes/details.html" %}
+                {% endfor %}
+
+          </div>
+        </div>
+      </section>
+
+
+
+
+{% endblock %}
