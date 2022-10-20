@@ -11,7 +11,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-import os
+
+import environ
+
+env = environ.Env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,12 +24,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-h32dax@o-pw^(r#+3f%8%xet8%i#5-o!zwz()f*9@s@oz+14%$"
+SECRET_KEY = env.str(
+    "SECRET_KEY", default="django-insecure-h32dax@o-pw^(r#+3fxet8#5-o!zwz()f*9@s@oz+14%$")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool("DEBUG", default=False)
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["localhost", "127.0.0.1"])
+
+CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=[])
 
 
 # Application definition
@@ -121,7 +127,7 @@ STATIC_URL = "static/"
 
 # MEDIA_URL is the URL that will serve the media files and MEDIA_ROOT is the path to the root directory where the files are getting stored.
 MEDIA_URL = "/uploads/"
-MEDIA_ROOT = BASE_DIR/ "uploads/"
+MEDIA_ROOT = BASE_DIR / "uploads/"
 
 
 # Default primary key field type
@@ -129,5 +135,4 @@ MEDIA_ROOT = BASE_DIR/ "uploads/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-LOGO = os.getenv("LOGO", "")
-print(LOGO)
+LOGO = env.str("LOGO", "")
