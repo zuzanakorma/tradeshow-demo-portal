@@ -14,33 +14,33 @@
 
 
 {% block content %}
-    <nav class="nav navbar navbar-expand-sm navbar-dark bg-dark">
-      <div class="container">
-        <a class="navbar-brand" href="#">
-          <img src="{{ logo }}" alt="" width="150">
-        </a>
+<nav class="nav navbar navbar-expand-sm navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="{{ logo }}" alt="" width="150">
+    </a>
 
 
-        <div class="d-flex justify-content-center">
-          <div class="px-3">
-            <a href="/admin" class="px-3 text-white">Admin</a>
-          </div>
-        </div>
+    <div class="d-flex justify-content-center">
+      <div class="px-3">
+        <a href="/admin" class="px-3 text-white">Admin</a>
       </div>
-    </nav>
+    </div>
+  </div>
+</nav>
 
-    <section id="team" class="my-5 text-center">
-        <div class="container">
-          <div class="row">
+<section id="team" class="text-center">
+  <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+    <div class="row">
 
 
-                {% for card in cards %}
-                   {% include "cards/includes/details.html" %}
-                {% endfor %}
+      {% for card in cards %}
+      {% include "cards/includes/details.html" %}
+      {% endfor %}
 
-          </div>
-        </div>
-      </section>
+    </div>
+  </div>
+</section>
 
 
 
