@@ -24,8 +24,9 @@
       crossorigin="anonymous"
     />
 
-
+{% load static %}
     <title>{% block title %} {% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ logo }}">
 
     {% block css_file %}
 
@@ -33,6 +34,11 @@
   </head>
 
   <body>
+  <header id='main-header'>
+    {% block main_header %}
+    {% include 'cards/navigation/nav.html'%}
+      {% endblock %}
+</header>
 
     {% block content %}
        {% endblock %}

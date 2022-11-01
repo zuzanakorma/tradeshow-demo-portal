@@ -5,7 +5,6 @@ from django.conf import settings
 class StartingPageView(ListView):
     template_name = "cards/index.html"
     model = Card
-
     context_object_name = "cards"
 
 
@@ -15,4 +14,6 @@ class StartingPageView(ListView):
 
         return context
 
+    def get_queryset(self):
+        return Card.objects.filter(visible=True).order_by('-title')
 

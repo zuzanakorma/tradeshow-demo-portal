@@ -1,8 +1,9 @@
-{% extends 'cards/base.html' %}
+{% extends 'cards/base/base.html' %}
+
 {% load static %}
 
 {% block title %}
-
+Portal
 {% endblock %}
 
 {% block css_file%}
@@ -14,20 +15,7 @@
 
 
 {% block content %}
-    <nav class="nav navbar navbar-expand-sm navbar-dark bg-dark">
-      <div class="container">
-        <a class="navbar-brand" href="#">
-          <img src="{{ logo }}" alt="" width="150">
-        </a>
 
-
-        <div class="d-flex justify-content-center">
-          <div class="px-3">
-            <a href="/admin" class="px-3 text-white">Admin</a>
-          </div>
-        </div>
-      </div>
-    </nav>
 
     <section id="team" class="my-5 text-center">
         <div class="container">
@@ -41,8 +29,6 @@
           </div>
         </div>
       </section>
-
-
 
 
 {% endblock %}
