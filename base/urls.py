@@ -17,11 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from .views import SearchView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', include('apps.cards.urls')),
-
+    path('search/', SearchView.as_view(), name="search-demo"),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
