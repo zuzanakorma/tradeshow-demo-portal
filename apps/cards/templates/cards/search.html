@@ -1,9 +1,8 @@
 {% extends 'cards/base/base.html' %}
-
 {% load static %}
 
 {% block title %}
-Portal
+Search
 {% endblock %}
 
 {% block css_file%}
@@ -12,19 +11,22 @@ Portal
 <link rel="stylesheet" href="{% static 'cards/index.css' %}">
 {% endblock %}
 
+
 {% block content %}
 
-<section id="team" class="text-center">
-  <div class="position-relative overflow-hidden m-md-2 text-center">
+
+<section class="my-5 text-center">
+  <div class="container">
     <div class="row">
 
-      {% for card in cards %}
+      {% for card in object_list %}
       {% include "cards/includes/details.html" %}
       {% endfor %}
 
     </div>
   </div>
 </section>
+
 
 
 {% endblock %}
