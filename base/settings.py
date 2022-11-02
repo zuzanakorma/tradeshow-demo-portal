@@ -29,7 +29,8 @@ env = environ.Env(
         str, "django-insecure-h32dax@o-pw^(r#+3fxet8#5-o!zwz()f*9@s@oz+14%$"),
     ALLOWED_HOSTS=(list, ["localhost", "127.0.0.1"]),
     CSRF_TRUSTED_ORIGINS=(list, []),
-    LOGO=(str, STATIC_URL + "cards/images/logo_placeholder.png")
+    LOGO=(str, STATIC_URL + "cards/images/logo_placeholder.png"),
+    CARDS_ORDER_BY=(str, 'id'),
 )
 
 # Take environment variables from .env file
@@ -48,6 +49,7 @@ ALLOWED_HOSTS = env("ALLOWED_HOSTS")
 
 CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS")
 LOGO = env("LOGO")
+CARDS_ORDER_BY = env("CARDS_ORDER_BY")
 
 
 # Application definition

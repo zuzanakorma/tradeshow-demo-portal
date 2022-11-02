@@ -21,8 +21,8 @@ class StartingPageView(ListView):
 
         if query is not None:
             search_results = Card.objects.search(query)
-            qs = sorted(search_results,
-                        key=lambda instance: instance.pk,
-                        reverse=True)
-            return qs
-        return Card.objects.filter(visible=True).order_by('title')
+            # qs = sorted(search_results,
+            #             key=lambda instance: instance.pk,
+            #             reverse=True)
+            return search_results
+        return Card.objects.filter(visible=True).order_by(settings.CARDS_ORDER_BY)

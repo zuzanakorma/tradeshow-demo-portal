@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.db.models import Q
 
@@ -9,7 +10,8 @@ class CardQuerySet(models.QuerySet):
             or_lookup = (Q(title__icontains=query) |
                          Q(description__icontains=query)
                          )
-            qs = qs.filter(or_lookup).distinct()
+            qs = qs.filter(or_lookup, visible=True).distinct().order_by(
+                settings.CARDS_ORDER_BY)
         return qs
 
 
