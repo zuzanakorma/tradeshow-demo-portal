@@ -15,18 +15,22 @@ from pathlib import Path
 
 import environ
 
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/4.1/howto/static-files/
+
+STATIC_URL = "static/"
+
 env = environ.Env(
     DEBUG=(bool, False),
     SECRET_KEY=(
         str, "django-insecure-h32dax@o-pw^(r#+3fxet8#5-o!zwz()f*9@s@oz+14%$"),
     ALLOWED_HOSTS=(list, ["localhost", "127.0.0.1"]),
     CSRF_TRUSTED_ORIGINS=(list, []),
-    DATABASE_DIR=(str, ""),
-    LOGO=(str, ""),
+    LOGO=(str, STATIC_URL + "cards/images/logo_placeholder.png")
 )
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Take environment variables from .env file
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
@@ -35,14 +39,15 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env("DEBUG")
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = env("ALLOWED_HOSTS")
 
 CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS")
+LOGO = env("LOGO")
 
 
 # Application definition
@@ -91,8 +96,8 @@ WSGI_APPLICATION = "base.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-if env("DATABASE_DIR"):
-    DATABASE_DIR = BASE_DIR / env("DATABASE_DIR")
+if env.str("DATABASE_DIR", default=""):
+    DATABASE_DIR = BASE_DIR / env.str("DATABASE_DIR")
 else:
     DATABASE_DIR = BASE_DIR
 
@@ -136,11 +141,6 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.1/howto/static-files/
-
-STATIC_URL = "static/"
-
 # MEDIA_URL is the URL that will serve the media files and MEDIA_ROOT is the path to the root directory where the files are getting stored.
 MEDIA_URL = "/uploads/"
 MEDIA_ROOT = BASE_DIR / "uploads/"
@@ -150,5 +150,3 @@ MEDIA_ROOT = BASE_DIR / "uploads/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-LOGO = env("LOGO")
