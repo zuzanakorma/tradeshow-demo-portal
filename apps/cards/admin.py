@@ -1,3 +1,4 @@
+from adminsortable2.admin import SortableAdminMixin
 from django.contrib import admin
 
 from .models import Card
@@ -13,7 +14,7 @@ def make_invisible(modeladmin, request, queryset):
     queryset.update(visible=False)
 
 
-class CardAdmin(admin.ModelAdmin):
+class CardAdmin(SortableAdminMixin, admin.ModelAdmin):
     list_display = ('title', 'visible')
     actions = [make_visible, make_invisible]
 

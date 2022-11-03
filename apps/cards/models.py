@@ -1,7 +1,5 @@
-from django.conf import settings
 from django.db import models
 from django.db.models import Q
-from django.conf import settings
 
 
 class CardQuerySet(models.QuerySet):
@@ -11,8 +9,7 @@ class CardQuerySet(models.QuerySet):
             or_lookup = (Q(title__icontains=query) |
                          Q(description__icontains=query)
                          )
-            qs = qs.filter(or_lookup, visible=True).distinct().order_by(
-                settings.CARDS_ORDER_BY)
+            qs = qs.filter(or_lookup, visible=True).distinct()
         return qs
 
 
@@ -33,11 +30,17 @@ class Card(models.Model):
     password = models.CharField(max_length=128)
     visible = models.BooleanField(default=True)
 
+    my_order = models.PositiveSmallIntegerField(
+        default=0, blank=False, null=False)
+
     def __str__(self):
-        return self.title
+        return str(self.title)
 
     def delete(self, using=None, keep_parents=False):
         self.image.delete()
         super().delete()
+
+    class Meta:
+        ordering = ['my_order']
 
     objects = CardManager()
