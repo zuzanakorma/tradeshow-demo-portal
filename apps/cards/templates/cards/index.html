@@ -8,8 +8,8 @@ Portal
 
 {% block css_file%}
 
-<link rel="stylesheet" href="{% static 'cards/details.css' %}">
-<link rel="stylesheet" href="{% static 'cards/index.css' %}">
+<link rel="stylesheet" href="{% static 'cards/css/details.css' %}">
+<link rel="stylesheet" href="{% static 'cards/css/index.css' %}">
 {% endblock %}
 
 
@@ -19,7 +19,7 @@ Portal
 
     <section class="text-center">
         <div class="position-relative overflow-hidden m-md-2 text-center">
-          <div class="row">
+          <div id="cards" class="row">
 
 
                 {% for card in cards %}

@@ -1,7 +1,14 @@
 from django.db import models
 from django.db.models import Q
+from django_resized import ResizedImageField
 from django.conf import settings
 
+
+class Tag(models.Model):
+    caption = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.caption
 
 class CardQuerySet(models.QuerySet):
     def search(self, query=None):
@@ -25,12 +32,13 @@ class CardManager(models.Manager):
 
 class Card(models.Model):
     title = models.CharField(max_length=32)
-    image = models.ImageField(upload_to="images", null=True)
+    image = ResizedImageField(size=[200, 200], scale=None, crop=['middle', 'center'], upload_to="images", null=True)
     description = models.CharField(max_length=32)
     url = models.URLField()
     username = models.CharField(max_length=128)
     password = models.CharField(max_length=128)
     visible = models.BooleanField(default=True)
+    tags = models.ManyToManyField(Tag)
 
     def __str__(self):
         return self.title
