@@ -1,6 +1,8 @@
-from django.views.generic import ListView
-from .models import Card
 from django.conf import settings
+from django.views.generic import ListView
+
+from .models import Card
+
 
 class StartingPageView(ListView):
     template_name = "cards/index.html"
@@ -23,4 +25,4 @@ class StartingPageView(ListView):
             #             key=lambda instance: instance.pk,
             #             reverse=True)
             return search_results
-        return Card.objects.filter(visible=True).order_by(settings.CARDS_ORDER_BY)
+        return Card.objects.filter(visible=True)

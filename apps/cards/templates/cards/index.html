@@ -12,23 +12,20 @@ Portal
 <link rel="stylesheet" href="{% static 'cards/css/index.css' %}">
 {% endblock %}
 
-
-
 {% block content %}
 
 
-    <section class="text-center">
-        <div class="position-relative overflow-hidden m-md-2 text-center">
-          <div id="cards" class="row">
+<section class="text-center">
+  <div class="position-relative overflow-hidden m-md-2 text-center">
+    <div id="cards" class="row">
 
+      {% for card in cards %}
+      {% include "cards/includes/details.html" %}
+      {% endfor %}
 
-                {% for card in cards %}
-                   {% include "cards/includes/details.html" %}
-                {% endfor %}
-
-          </div>
-        </div>
-      </section>
+    </div>
+  </div>
+</section>
 
 
 {% endblock %}

@@ -10,11 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-from pathlib import Path
-import environ
 import os
+from pathlib import Path
 
-
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,11 +25,11 @@ STATIC_URL = "static/"
 
 env = environ.Env(
     DEBUG=(bool, False),
-    SECRET_KEY=(str, "django-insecure-h32dax@o-pw^(r#+3fxet8#5-o!zwz()f*9@s@oz+14%$"),
+    SECRET_KEY=(
+        str, "django-insecure-h32dax@o-pw^(r#+3fxet8#5-o!zwz()f*9@s@oz+14%$"),
     ALLOWED_HOSTS=(list, ["localhost", "127.0.0.1"]),
     CSRF_TRUSTED_ORIGINS=(list, []),
-    LOGO=(str, STATIC_URL + "cards/images/logo_placeholder.png" ),
-    CARDS_ORDER_BY=(str, 'id'),
+    LOGO=(str, STATIC_URL + "cards/images/logo_placeholder.png"),
 )
 
 # Take environment variables from .env file
@@ -49,7 +48,6 @@ ALLOWED_HOSTS = env("ALLOWED_HOSTS")
 
 CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS")
 LOGO = env("LOGO")
-CARDS_ORDER_BY =env("CARDS_ORDER_BY")
 
 
 # Application definition
@@ -61,6 +59,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "adminsortable2",
     "apps.cards",
 ]
 
@@ -143,7 +142,6 @@ USE_I18N = True
 USE_TZ = True
 
 
-
 # MEDIA_URL is the URL that will serve the media files and MEDIA_ROOT is the path to the root directory where the files are getting stored.
 MEDIA_URL = "/uploads/"
 MEDIA_ROOT = BASE_DIR / "uploads/"
@@ -156,12 +154,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # for django_resized , not implemented, https://github.com/un1t/django-resized
 
-# DJANGORESIZED_DEFAULT_SIZE = [1920, 1080]
-# DJANGORESIZED_DEFAULT_SCALE = 0.5
+DJANGORESIZED_DEFAULT_SIZE = [200, 200]
+# DJANGORESIZED_DEFAULT_SCALE = None
 # DJANGORESIZED_DEFAULT_QUALITY = 75
 # DJANGORESIZED_DEFAULT_KEEP_META = True
 # DJANGORESIZED_DEFAULT_FORCE_FORMAT = 'JPEG'
 # DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {'JPEG': ".jpg"}
 # DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True
-
-
