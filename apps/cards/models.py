@@ -39,7 +39,7 @@ class Card(models.Model):
     username = models.CharField(max_length=128)
     password = models.CharField(max_length=128)
     visible = models.BooleanField(default=True)
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag, blank=True)
 
     my_order = models.PositiveSmallIntegerField(
         default=0, blank=False, null=False)
