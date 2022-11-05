@@ -8,7 +8,7 @@ class Tag(models.Model):
     caption = models.CharField(max_length=20)
 
     def __str__(self):
-        return self.caption
+        return str(self.caption)
 
 
 class CardQuerySet(models.QuerySet):
@@ -32,8 +32,8 @@ class CardManager(models.Manager):
 
 class Card(models.Model):
     title = models.CharField(max_length=32)
-    image = ResizedImageField(size=[200, 200], scale=None, crop=[
-                              'middle', 'center'], upload_to="images", null=True)
+    image = ResizedImageField(crop=[
+                              'middle', 'center'], upload_to="images", null=True, help_text="Icon should be at least 200x200 px. Icon will be automatically cropped otherwise.")
     description = models.CharField(max_length=32)
     url = models.URLField()
     username = models.CharField(max_length=128)
