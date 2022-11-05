@@ -151,3 +151,13 @@ MEDIA_ROOT = BASE_DIR / "uploads/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# for django_resized , not implemented, https://github.com/un1t/django-resized
+
+# DJANGORESIZED_DEFAULT_SIZE = [1920, 1080]
+# DJANGORESIZED_DEFAULT_SCALE = 0.5
+# DJANGORESIZED_DEFAULT_QUALITY = 75
+# DJANGORESIZED_DEFAULT_KEEP_META = True
+# DJANGORESIZED_DEFAULT_FORCE_FORMAT = 'JPEG'
+# DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {'JPEG': ".jpg"}
+# DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True
